@@ -10,20 +10,7 @@ export default function Home() {
 
   return (
     <section styles={styles.homeSection}>
-      <Carousel>
-        <div>
-          <h1>Slide 1</h1>
-          <p>This is the content of slide 1.</p>
-        </div>
-        <div>
-          <h1>Slide 2</h1>
-          <p>This is the content of slide 2.</p>
-        </div>
-        <div>
-          <h1>Slide 3</h1>
-          <p>This is the content of slide 3.</p>
-        </div>
-      </Carousel>
+      <Carousel />
       <div className='content-wrapper'>
         <div className={styles.productContent}>
           <div>

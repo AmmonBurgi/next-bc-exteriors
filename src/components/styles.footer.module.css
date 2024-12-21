@@ -1,6 +1,6 @@
 .footer {
-  background-color: purple;
-  color: var(--secondary-color);
+  background-color: var(--primary-background);
+  color: var(--default-color);
   width: 100%;
   padding: 2rem 0;
 }
@@ -30,7 +30,7 @@
 }
 .footerMainNav li a {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--default-color);
   font-size: 1rem;
   font-weight: bold;
 }

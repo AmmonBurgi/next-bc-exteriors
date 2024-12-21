@@ -57,11 +57,42 @@
 
 .sectionHeader {
   width: 100%;
-  height: 30vh;
+  height: 45vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(6rem, 10vh, 7rem);
   background-color: rgb(64, 64, 64);
+  position: relative;
+  overflow: clip;
+}
+.sectionHeader img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  object-fit: cover;
+}
+.sectionHeader span {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(33, 52, 39, 0.5);
+}
+.sectionHeader h1 {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.sectionHeader p {
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 2;
 }

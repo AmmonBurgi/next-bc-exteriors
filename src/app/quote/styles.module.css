@@ -1,0 +1,18 @@
+.quoteContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.quoteContent > div:first-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.quoteContent > div:nth-child(2) {
+  flex: 2;
+}
