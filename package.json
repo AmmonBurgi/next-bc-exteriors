@@ -13,9 +13,11 @@
     "embla-carousel-fade": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
     "next": "15.1.0",
+    "nodemailer": "^7.0.3",
     "normalize.css": "^8.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-simple-image-viewer": "^1.2.2",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
