@@ -111,9 +111,29 @@ const inputData = [
 ]
 
 export default function QuotePage() {
-  const handlerFunction = (formValues) => {
-    console.log(formValues);
-  }
+  const handleSubmit = (formData) => {
+    console.log('Form submitted with data:', formData);
+
+    fetch('/api/smtp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...formData })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Data received:', data);
+    })
+    .catch(error => {
+      console.error('Contact form error:', error);
+    });
+  } 
 
   return (
     <section>
@@ -131,7 +151,7 @@ export default function QuotePage() {
           </div>
           <div>
             <ReusableForm
-              handlerFunction={handlerFunction} 
+              handleSubmit={handleSubmit}
               inputs={inputData}
             />
           </div>

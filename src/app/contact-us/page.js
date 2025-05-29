@@ -87,17 +87,6 @@ const inputData = [
       },
     },
   ],
-  // [
-  //   {
-  //     label: "How did you hear about us?",
-  //     properties: {
-  //       type: "text",
-  //       name: "message",
-  //       id: "message",
-  //       required: false,
-  //     },
-  //   }
-  // ],
   [
     {
       label: "Message",
@@ -113,8 +102,28 @@ const inputData = [
 
 export default function ContactPage() {
 
-  const handleSubmit = () => {
+  const handleSubmit = (formData) => {
+    console.log('Form submitted with data:', formData);
 
+    fetch('/api/smtp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...formData })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Data received:', data);
+    })
+    .catch(error => {
+      console.error('Contact form error:', error);
+    });
   } 
 
   return (
