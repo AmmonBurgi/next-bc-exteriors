@@ -12,6 +12,7 @@
     "embla-carousel-autoplay": "^8.5.1",
     "embla-carousel-fade": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
+    "mongodb": "^6.16.0",
     "next": "15.1.0",
     "nodemailer": "^7.0.3",
     "normalize.css": "^8.0.1",

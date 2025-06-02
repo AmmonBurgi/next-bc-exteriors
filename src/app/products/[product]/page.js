@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import ImageViewer from "react-simple-image-viewer";
 import Image from "next/image";
 
+import BreadcrumbMenu from "@/components/BreadcrumbMenu";
 import SectionHeader from "@components/SectionHeader";
 
 import styles from "../styles.module.css";
@@ -80,6 +81,7 @@ export default function ProductPage() {
         title={product}
         imageData={{ src: imageTwo, alt: "House Two" }}
       />
+      <BreadcrumbMenu />
       <div className="content-wrapper">
         <div className={styles.productContent}>
           <h2>Our selection of {product}</h2>

@@ -1,0 +1,18 @@
+{
+  "_id": "uuid",
+  "productType": "string",
+  "name": "string",
+  "description": "string",
+  "brand": "string",
+  "color": "string",
+  "thickness": "string",
+  "dimensions": { "length": "string", "width": "string" },
+  "pricePerUnit": "00.00",
+  "unit": "string",
+  "inStock": "boolean",
+  "images": [
+    "https://example.com/images/granite-cladding-1.jpg",
+    "https://example.com/images/granite-cladding-2.jpg"
+  ],
+  "uri": "https://example.com"
+}

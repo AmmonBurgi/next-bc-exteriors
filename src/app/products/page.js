@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation"; 
 
+import BreadcrumbMenu from "@/components/BreadcrumbMenu";
 import SectionHeader from "@components/SectionHeader";
 
 import styles from "./styles.module.css";
@@ -46,6 +48,19 @@ const products = [
 export default function ProductsPage() {
   const router = useRouter();
 
+  useEffect(() => {
+    fetch('/api/products')
+      .then(response => response.json())
+      .then(data => {
+        // Assuming the API returns an array of products
+        // You can set the products state here if needed
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
+
   return (
     <section>
       <SectionHeader
@@ -53,6 +68,7 @@ export default function ProductsPage() {
         subtitle={"Browse our selection of high-quality products."}
         imageData={{ src: imageTwo, alt: "House Two" }}
       />
+      <BreadcrumbMenu />
       <div className="content-wrapper">
         <div className={styles.productsGrid}>
           {products.map((product, index) => {
