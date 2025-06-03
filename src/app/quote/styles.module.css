@@ -13,6 +13,15 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+.quoteContent div:first-child h2 {
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.quoteContent div:first-child p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
 .quoteContent > div:nth-child(2) {
   flex: 2;
 }

@@ -133,7 +133,7 @@ export default function ContactPage() {
         <div className={styles.contactContent}>
           <div>
             <h2>Get in touch</h2>
-            <p>Fill out the form below to get in touch with us. We'll get back to you as soon as possible</p>
+            <p>Fill out the form to get in touch with us, and we'll get back to you as soon as possible.</p>
           </div>
           <div>
             <ReusableForm 

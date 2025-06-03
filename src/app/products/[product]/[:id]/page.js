@@ -25,11 +25,26 @@ export default function ProductDetailsPage() {
   // }
 
   return (
-    <div>
+    <section>
       <SectionHeader 
         title="Product Details"
         imageData={{ src: imageTwo, alt: "House Two" }}
       />
+      <div className="content-wrapper">
+        <div className="product-details">
+          <div>
+            Inspiration
+          </div>
+          <div>
+            <h1>Product Name</h1>
+            <h2>Brand Name</h2>
+            <p>Description</p>
+            <div>
+              Map Images
+            </div>
+          </div>
+        </div>
+      </div>
       {/* {toggleViewer && (
         <ImageViewer
           styles
@@ -41,6 +56,6 @@ export default function ProductDetailsPage() {
           backgroundStyle={{ zIndex: 1000 }}
         />
       )} */}
-    </div>
+    </section>
   )
 }
