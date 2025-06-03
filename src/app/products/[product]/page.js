@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import ImageViewer from "react-simple-image-viewer";
 import Image from "next/image";
 
+import { useAppData } from "@/contexts/AppDataContext";
 import BreadcrumbMenu from "@/components/BreadcrumbMenu";
 import SectionHeader from "@components/SectionHeader";
 
@@ -13,35 +13,21 @@ import imageTwo from "@public/house-two.jpg";
 
 export default function SubProducts() {
   const router = useRouter();
-  const { product: subProParam } = useParams();
+  const { product: productParam } = useParams();
 
-  const [subProducts, setSubProducts] = useState([]);
+  const { products } = useAppData();
 
-  useEffect(() => {
-    if (subProducts.length > 0) return;
-
-    fetch(`/api/products/${subProParam}`)
-    .then(response => response.json())
-    .then(data => {
-      console.log("Sub products: ", data);
-      setSubProducts(data);
-    })
-    .catch(error => {
-      console.error('Error fetching products:', error);
-    });
-  }, [subProducts]);
-
-  const subProductsMap = subProducts.map((subProduct, index) => {
+  const productsMap = products.map((product, index) => {
     return (
       <div
-        onClick={() => router.push(`/products/${subProParam}/${subProduct._id}`)}
+        onClick={() => router.push(`/products/${productParam}/${product._id}`)}
         className={styles.subProduct}
         key={index}
       >
         <span>
-          <Image fill src={subProduct.images[0]} alt={subProduct.name} />
+          <Image fill src={product.images[0].base64} alt={product.name} />
         </span>
-        <h3>{subProduct.name}</h3>
+        <h3>{product.name}</h3>
       </div>
     );
   });
@@ -49,14 +35,14 @@ export default function SubProducts() {
   return (
     <section>
       <SectionHeader
-        title={subProParam}
+        title={productParam}
         imageData={{ src: imageTwo, alt: "House Two" }}
       />
       <BreadcrumbMenu />
       <div className="content-wrapper">
         <div className={styles.productContent}>
-          <h2>Our selection of {subProParam}</h2>
-          <div className={styles.subProductsGrid}>{subProductsMap}</div>
+          <h2>Our selection of {productParam}</h2>
+          <div className={styles.subProductsGrid}>{productsMap}</div>
         </div>
       </div>
     </section>

@@ -1,15 +1,15 @@
 import clientPromise from "@/lib/mongodb";
 
-export async function GET(request, response) {
+export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db("ExteriorsStore");
-    // Example: Insert or fetch data
-    const posts = await db.collection("products").find({}).toArray();
+    
+    const records = await db.collection("inspirations").find({}).toArray();
 
-    console.log('Fetched products:', posts);
+    console.log('Inspirations records:', records);
 
-    return Response.json(posts, {
+    return Response.json(records, {
       status: 200,
       headers: {
         "Content-Type": "application/json",

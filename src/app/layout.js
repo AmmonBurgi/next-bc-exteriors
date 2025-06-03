@@ -1,34 +1,49 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import { headers } from "next/headers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import AppDataProvider from "@/contexts/AppDataContext";
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 
 export const metadata = {
   title: "B&C Exteriors - Exterior Remodeling Services in Utah",
   description: "B&C Exteriors offers top-quality exterior remodeling services in Utah Valley, including...",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const headersList = await headers();
+  const host = headersList.get('host');
+  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+  const baseUrl = `${protocol}://${host}`;
+
+  const [productsRes, inspirationsRes, categoriesRes] = await Promise.all([
+    fetch(`${baseUrl}/api/products`),
+    fetch(`${baseUrl}/api/inspirations`),
+    fetch(`${baseUrl}/api/categories`),
+  ]);
+
+  const [products, inspirations, categories] = await Promise.all([
+    productsRes.json(),
+    inspirationsRes.json(),
+    categoriesRes.json(),
+  ]);
+
   return (
     <html lang="en">
       <body>
         <div className="frame">
-          <Header />
-            <main>
-              {children}
-            </main>
-          <Footer />
+          <AppDataProvider
+            products={products}
+            inspirations={inspirations}
+            categories={categories}
+          >
+            <Header />
+              <main>
+                {children}
+              </main>
+            <Footer />
+          </AppDataProvider>
         </div>
       </body>
     </html>

@@ -4,62 +4,17 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation"; 
 
+import { useAppData } from "@/contexts/AppDataContext";
 import BreadcrumbMenu from "@/components/BreadcrumbMenu";
 import SectionHeader from "@components/SectionHeader";
 
 import styles from "./styles.module.css";
 
-import imageOne from "@public/house-one.jpg";
 import imageTwo from '@public/house-two.jpg';
 
-const products = [
-  {
-    location: "/stone",
-    name: "Product 1",
-    image: imageOne
-  },
-  {
-    location: "/stone",
-    name: "Product 2",
-    image: imageOne
-  },
-  {
-    location: "/stone",
-    name: "Product 3",
-    image: imageOne
-  },
-  {
-    location: "/stone",
-    name: "Product 4",
-    image: imageOne
-  },
-  {
-    location: "/stone",
-    name: "Product 5",
-    image: imageOne
-  },
-  {
-    location: "/stone",
-    name: "Product 6",
-    image: imageOne
-  },
-]
-
 export default function ProductsPage() {
+  const { categories } = useAppData();
   const router = useRouter();
-
-  useEffect(() => {
-    fetch('/api/products')
-      .then(response => response.json())
-      .then(data => {
-        // Assuming the API returns an array of products
-        // You can set the products state here if needed
-        console.log(data);
-      })
-      .catch(error => {
-        console.error('Error fetching products:', error);
-      });
-  }, []);
 
   return (
     <section>
@@ -71,16 +26,16 @@ export default function ProductsPage() {
       <BreadcrumbMenu />
       <div className="content-wrapper">
         <div className={styles.productsGrid}>
-          {products.map((product, index) => {
+          {categories.map((category, index) => {
             return (
               <div 
                 key={index} 
                 className={styles.productContainer}
-                onClick={() => router.push(`/products${product.location}`)}
+                onClick={() => router.push(`/products/${category.name}`)}
               >
                 <span></span>
-                <Image src={product.image} alt={product.name} />
-                <h2>{product.name}</h2>
+                <Image src={category.image} alt={category.name} />
+                <h2>{category.name}</h2>
               </div>
             );
           })}
