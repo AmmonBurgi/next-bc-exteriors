@@ -21,14 +21,11 @@
 .productContainer img {
   height: 100%;
   width: auto;
-  position: absolute;
   object-fit: cover;
-  top: 50%;
-  transform: translateY(-50%);
   transition: transform 0.3s ease-in-out;
 }
 .productContainer:hover img {
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
 }
 .productContainer span {
   width: 100%;

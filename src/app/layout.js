@@ -29,6 +29,10 @@ export default async function RootLayout({ children }) {
     categoriesRes.json(),
   ]);
 
+  console.log('Products:', products);
+  console.log('Inspirations:', inspirations);
+  console.log('Categories:', categories);
+
   return (
     <html lang="en">
       <body>

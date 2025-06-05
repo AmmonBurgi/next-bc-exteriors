@@ -34,7 +34,7 @@ export default function ProductsPage() {
                 onClick={() => router.push(`/products/${category.name}`)}
               >
                 <span></span>
-                <Image src={category.image} alt={category.name} />
+                <Image fill src={category.url} alt={category.name} />
                 <h2>{category.name}</h2>
               </div>
             );

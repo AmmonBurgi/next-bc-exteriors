@@ -14,10 +14,26 @@ import imageTwo from "@public/house-two.jpg";
 export default function SubProducts() {
   const router = useRouter();
   const { product: productParam } = useParams();
+  const { products, categories } = useAppData();
 
-  const { products } = useAppData();
+  const [categoryId, setCategoryId] = useState("");
+
+  useEffect(() => {
+    categories.forEach((category) => {
+      if (category.name.toLowerCase() === productParam.toLowerCase()) {
+        setCategoryId(category._id);
+      }
+    });
+  }, [productParam, categories]);
 
   const productsMap = products.map((product, index) => {
+    if (
+      product.categoryId && 
+      product.categoryId !== categoryId
+    ) {
+      return null;
+    } 
+
     return (
       <div
         onClick={() => router.push(`/products/${productParam}/${product._id}`)}
